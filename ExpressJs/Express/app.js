@@ -9,6 +9,7 @@ const contactRoute = require('./routes/contact');
 const bodyParser = require('body-parser');
 
 const path = require('path');
+const productsController = require('./controllers/error')
 
 const app = express();
 
@@ -21,9 +22,7 @@ app.use('/',contactRoute);
 
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use((req,res) => {
-    res.status(404).sendFile(path.join(__dirname,'views','error.html'));
-})
+app.use(productsController.errorPage);
 
 
 
